@@ -35,7 +35,7 @@ how can either of these be predicted?
 Measuring the effects of invasive spreading on temporal networks ability to effectively cluster around stable nodes.
 
 For the purpose of?
-- predicting stable node activity: stumping, nominating, electing, disposing
+- predicting stable node activity: stumping, nominating, electing, impeaching
 - predicting the formation, expansion, contraction, and dissolution of communities
 
 ### activities
