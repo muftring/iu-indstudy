@@ -1,0 +1,4 @@
+- [The Network Science Society](http://www.netscisociety.net)
+  - Upcoming events:
+    - NetSci-X 2019, Santiago, Chile
+    - NetSci 2019, Burlington, Vermont, USA
