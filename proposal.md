@@ -1,74 +1,44 @@
-# Independent Study
-Describe the project being completed (include: background, purpose, activities, and outcome). You may write the description below or attach an additional sheet.
-
-## Proposal
-### background
-networks are everywhere
-they model / represent a lot of things
-most are dynamic: they change over time
-- living organisms
-- ecosystems
-- transportation
-- Social Networks
-- collaboration
-
-spreading happens
-some of the diffusion is invasive
-- information, research
-- news, gossip
-- disease
-
-there is a concept of "stable node"
-- what is a stable node?
-- what defines a stable node?
-
-clustering => communities
-- how do they form?
-- how do they collapse?
-
-how can either of these be predicted?
-- stable nodes
-- communities
-- diffusion
-
-### purpose
-Measuring the effects of invasive spreading on temporal networks ability to effectively cluster around stable nodes.
-
-For the purpose of?
-- predicting stable node activity: stumping, nominating, electing, impeaching
-- predicting the formation, expansion, contraction, and dissolution of communities
-
-### activities
-research: read relevant literature in:
-- graphs and networks
-- temporal (dynamic) networks
-- spreading phenomena
-- clustering
-
-### outcome
-software which visualizes clustering evolution in temporal networks, in the presence of invasive spreading
-- showing the evolution of the network as a whole
-- showing the evolution of communities (forming, expanding, contracting, dissolving)
-- visual component which shows the predictive measure of community evolution
+Michael Uftring
+Indiana University
+Independent Study, Fall 2018
 
 -----
 
-# Working Thoughts
+# Objective
+The aim is to study and visualize the stability of nodes in temporal networks, specifically in terms of clusters and communities.
 
-Measuring the effects of invasive spreading on temporal networks ability to effectively cluster around stable nodes.
+# Background
+Networks are everywhere around us. They model and represent many things concrete and conceptual -- living organisms, vast ecosystems, transportation, human relationships, collaboration -- and most networks change over time.
 
-Working statements, thoughts, questions, ToDo items:
-- define "stable node"
-- determine characteristics of stable nodes (are there existing measures? do we need to discover new measures?)
-- how does a stable node become destabilized? how does a new node "replace" a deteriorated or eliminated stable node?
-- determine an effective and possibly predictive cluster comparison metric under these circumstances (consider what is presented in YY's paper)
-- determine how best to visualize the networks, in particular to show the differences between temporal slices, and emphasize where the invasive spreading is originating, and why it is having the magnitude of effect
+Within networks, groups of nodes and links form around commonalities. These groups are often called clusters or communities. Comparing clustering similarity measures across temporal snapshots of networks we can measure node stability, in terms of the clusters and communities.
+
+# Purpose
+The purpose of this project is to identify and show the structural change in temporal networks such that we may gain  insight into how, when, and why clustering and community formation, expansion, contraction, and dissolution in temporal networks is happening.
+
+# Activities
+Further knowledge and understanding will be gained through research in relevant literature in the areas of: graph and network theory, dynamic networks, clustering and community detection, and associated metrics and measures.
+
+Applying this analytical process on different networks, the aim is to gain specific insights into topical trends and changes.
+
+Examples:
+
+(1) With the American National Election Studies (ANES) data, we can study the trend of American political ideology, and shifts in general population beliefs between 1948 and 2016.
+
+(2) Examining changes in the citation network for climate change research over a specific time span may show when breakthroughs were discovered, or when a concept or belief was disproved or superseded.
+
+# Outcome
+The outcome will be a software package which will visualize the clustering evolution temporal network dataset. It will show the evolution of the network as a whole (addition and subtraction of nodes and links), and show the evolution of communities in the network (forming, expanding, contracting, dissolving).
+
 
 -----
 
 # References
-1. YY's paper on clustering measures [title+link](tbd)
-2. Mantzaris, Alexander V.; [*Uncovering nodes that spread information between communities in social networks* ](https://arxiv.org/pdf/1401.3222.pdf), 2014
-3. Gauvin, Laetitia; [TENSOR -BASED METHODS FOR TEMPORAL NETWORKS](https://laetitiagauvin.github.io/docs/NetSci2017.pdf)
-4. Baroni, Alessandro, et al.; [Efficiently Clustering Very Large Attributed Graphs](https://dl.acm.org/citation.cfm?id=3110025.3110030), 2017
-5. Janssen, Marco A., et al; [Toward a Network Perspective of the Study of Resilience in Social-Ecological Systems](https://www.jstor.org/stable/26267803?seq=1#page_scan_tab_contents), 2006
+1. Alexander J. Gates, Ian B. Wood, William P. Hetrick, Yong-Yeol Ahn; [On comparing clusterings: an element-centric framework unifies overlaps and hierarchy](https://arxiv.org/abs/1706.06136), 2017
+2. Alexander V. Mantzaris; [*Uncovering nodes that spread information between communities in social networks* ](https://arxiv.org/pdf/1401.3222.pdf), 2014
+3. Laetitia Gauvin; [TENSOR -BASED METHODS FOR TEMPORAL NETWORKS](https://laetitiagauvin.github.io/docs/NetSci2017.pdf)
+4. Alessandro Baroni, Alessio Conte, Maurizio Patrignani, and Salvatore Ruggieri; [Efficiently Clustering Very Large Attributed Graphs](https://dl.acm.org/citation.cfm?id=3110025.3110030), 2017
+5. Marco A. Janssen, Örjan Bodin, John M. Anderies, Thomas Elmqvist, Henrik Ernstson, Ryan R. J. McAllister, Per Olsson and Paul Ryan; [Toward a Network Perspective of the Study of Resilience in Social-Ecological Systems](https://www.jstor.org/stable/26267803?seq=1#page_scan_tab_contents), 2006
+6. Wei Liu, Xingpeng Jiang, Matteo Pellegrini & Xiaofan Wang; [Discovering communities in complex networks by edge label propagation](https://www.nature.com/articles/srep22470), 2016, Nature
+7. Rosvall, Martin, Carl T. Bergstrom; [Mapping Change in Large Networks](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0008694), 2010, PLOS ONE
+8. American National Election Studies (ANES); https://electionstudies.org
+9. Werner Marx, Robin Haunschild, Andreas Thor, Lutz Bornmann; [Which early works are cited most frequently in climate change research literature? A bibliometric approach based on Reference Publication Year Spectroscopy](https://link.springer.com/article/10.1007/s11192-016-2177-x), 2016, Scientometrics, Springer
