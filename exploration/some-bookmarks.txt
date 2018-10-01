@@ -6,7 +6,7 @@ https://remarkablemark.org/blog/2016/09/24/react-requirejs-amd/
 Ploy.ly
 -------
 https://plot.ly/organize/home
-
+https://plot.ly/python/3d-network-graph/
 
 Sankey Diagrams
 ---------------
@@ -19,11 +19,19 @@ Data Explorer (nteract)
 -----------------------
 https://blog.nteract.io/designing-the-nteract-data-explorer-f4476d53f897
 
+Scipy Meshgrid
+--------------
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.meshgrid.html
+https://stackoverflow.com/questions/42709221/how-do-you-create-a-3d-array-data-cube-in-python
 
 Data Vis
 --------
 https://curran.github.io/dataviz-course-2018/
+https://aviz.fr/cubix
 
+Data Mining
+-----------
+http://statweb.stanford.edu/~jtaylo/courses/stats202/index.html
 
 Research
 --------
