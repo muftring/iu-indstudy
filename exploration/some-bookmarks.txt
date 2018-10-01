@@ -1,0 +1,35 @@
+Jupyter
+-------
+http://nbviewer.jupyter.org/github/twosigma/beakerx/blob/master/doc/python/AutoTranslation.ipynb
+https://remarkablemark.org/blog/2016/09/24/react-requirejs-amd/
+
+Ploy.ly
+-------
+https://plot.ly/organize/home
+
+
+Sankey Diagrams
+---------------
+http://bl.ocks.org/d3noob/c9b90689c1438f57d649
+https://emeeks.github.io/semiotic/#/semiotic/divergingstackedbar
+https://developers.google.com/chart/interactive/docs/basic_load_libs
+https://jsfiddle.net/api/post/library/pure/
+
+Data Explorer (nteract)
+-----------------------
+https://blog.nteract.io/designing-the-nteract-data-explorer-f4476d53f897
+
+
+Data Vis
+--------
+https://curran.github.io/dataviz-course-2018/
+
+
+Research
+--------
+https://scholar.google.fr/citations?hl=en&user=Cs50yxUAAAAJ&view_op=list_works&sortby=pubdate
+
+Improvement
+-----------
+https://fs.blog/2015/08/william-deresiewicz-learn-how-to-think/
+
