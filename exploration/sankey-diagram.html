@@ -1,14 +1,15 @@
+
 <html>
 <head>
 </head>
 <body>
 <div id='main'></div>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js'></script>
 <script src='https://unpkg.com/semiotic/dist/semiotic.min.js'></script>
 
 <script >
-    
 var _Semiotic = Semiotic,NetworkFrame = _Semiotic.NetworkFrame;
 
 const colorMap = {
@@ -18,7 +19,7 @@ const colorMap = {
     'magenta':     '#8b008b',
     'lightgray':   '#d3d3d3'
 }
-    
+
 const nodeColors = {
   w: colorMap['red'],
   x: colorMap['blue'],
@@ -44,7 +45,6 @@ const flowColors = {
     '3->2': colorMap['lightgray'],
     '3->3': colorMap['green']
 }
-
 var nodes = [
 {
   id: '0',
@@ -137,7 +137,6 @@ var nodes = [
   category: 'y'
 }
 ];
-
 var edges = [
 { 
   source: '0',
@@ -272,7 +271,6 @@ var edges = [
   flow: '3->2'
 }
 ];
-
 console.log('nodes', nodes);
 console.log('edges', edges);
 
@@ -288,6 +286,8 @@ React.createElement(NetworkFrame, {
   margin: 31 }),
 
 document.getElementById('main'));
+
 </script>
+
 </body>
 </html>

@@ -1,0 +1,380 @@
+
+<html>
+<head>
+</head>
+<body>
+<div id='main'></div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js'></script>
+<script src='https://unpkg.com/semiotic/dist/semiotic.min.js'></script>
+
+<script >
+var _Semiotic = Semiotic,NetworkFrame = _Semiotic.NetworkFrame;
+
+// Returns a single rgb color interpolation between given rgb color
+// based on the factor given; via https://codepen.io/njmcode/pen/axoyD?editors=0010
+function interpolateColor(color1, color2, factor) {
+    if (arguments.length < 3) { 
+        factor = 0.5; 
+    }
+    var result = color1.slice();
+    for (var i = 0; i < 3; i++) {
+        result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+    }
+    return result;
+};
+// My function to interpolate between two colors completely, returning an array
+function interpolateColors(color1, color2, steps) {
+    var stepFactor = 1 / (steps - 1),
+        interpolatedColorArray = [];
+
+    color1 = color1.match(/\d+/g).map(Number);
+    color2 = color2.match(/\d+/g).map(Number);
+
+    for(var i = 0; i < steps; i++) {
+        interpolatedColorArray.push(interpolateColor(color1, color2, stepFactor * i));
+    }
+
+    return interpolatedColorArray;
+}
+
+const colorDefinition = {
+    'red':     'rgb(255,20,20)',
+    'green':   'rgb(0,179,0)',
+    'blue':    'rgb(0,0,179)',
+    'magenta': 'rgb(139,0,139)'
+}
+
+const colorDefinitionLight = {
+    'red':     'rgb(255,99,99)',
+    'green':   'rgb(0,179,0)',
+    'blue':    'rgb(81,81,255)',
+    'magenta': 'rgb(198,0,198)'
+}
+
+const colorMap = {
+    '0': 'red',
+    '1': 'blue',
+    '2': 'magenta',
+    '3': 'green'}
+
+function colorForNode(n) {
+  return colorDefinition[colorMap[n]]
+}
+
+
+function linkTransition(s,d) {
+  const steps = 5;
+  const factor = 0.75;
+  const index = Math.round((steps-1)*factor);
+  var color_s = colorDefinition[colorMap[s]];
+  var color_d = colorDefinition[colorMap[d]];
+  console.log(s, color_s);
+  console.log(d, color_d);
+  var gradient = interpolateColors(color_s, color_d, steps);
+  var choice = gradient[index];
+  var color = 'rgb('+choice[0]+','+choice[1]+','+choice[2]+')';
+  return color;
+}
+
+function colorForLink(s,d) {
+  if (s == d) {
+    return colorDefinitionLight[colorMap[s]];
+  }
+  else {
+    return linkTransition(s,d);
+  }
+}
+
+var nodes = [
+{
+  id: '0',
+  label: '0',
+  community: '0'
+},
+{
+  id: '1',
+  label: '0',
+  community: '0'
+},
+{
+  id: '2',
+  label: '1',
+  community: '1'
+},
+{
+  id: '3',
+  label: '1',
+  community: '1'
+},
+{
+  id: '4',
+  label: '2',
+  community: '2'
+},
+{
+  id: '5',
+  label: '0',
+  community: '0'
+},
+{
+  id: '6',
+  label: '1',
+  community: '1'
+},
+{
+  id: '7',
+  label: '2',
+  community: '2'
+},
+{
+  id: '8',
+  label: '0',
+  community: '0'
+},
+{
+  id: '9',
+  label: '1',
+  community: '1'
+},
+{
+  id: '10',
+  label: '2',
+  community: '2'
+},
+{
+  id: '11',
+  label: '0',
+  community: '0'
+},
+{
+  id: '12',
+  label: '1',
+  community: '1'
+},
+{
+  id: '13',
+  label: '2',
+  community: '2'
+},
+{
+  id: '14',
+  label: '3',
+  community: '3'
+},
+{
+  id: '15',
+  label: '0',
+  community: '0'
+},
+{
+  id: '16',
+  label: '1',
+  community: '1'
+},
+{
+  id: '17',
+  label: '2',
+  community: '2'
+}
+];
+var edges = [
+{ 
+  source: '0',
+  target: '1',
+  value: 4,
+  flow: '0->0',
+  origin: '0',
+  destination: '0'
+},
+{ 
+  source: '0',
+  target: '2',
+  value: 1,
+  flow: '0->1',
+  origin: '0',
+  destination: '1'
+},
+{ 
+  source: '3',
+  target: '4',
+  value: 4,
+  flow: '1->2',
+  origin: '1',
+  destination: '2'
+},
+{ 
+  source: '3',
+  target: '2',
+  value: 1,
+  flow: '1->1',
+  origin: '1',
+  destination: '1'
+},
+{ 
+  source: '1',
+  target: '5',
+  value: 3,
+  flow: '0->0',
+  origin: '0',
+  destination: '0'
+},
+{ 
+  source: '1',
+  target: '6',
+  value: 1,
+  flow: '0->1',
+  origin: '0',
+  destination: '1'
+},
+{ 
+  source: '2',
+  target: '6',
+  value: 2,
+  flow: '1->1',
+  origin: '1',
+  destination: '1'
+},
+{ 
+  source: '4',
+  target: '7',
+  value: 3,
+  flow: '2->2',
+  origin: '2',
+  destination: '2'
+},
+{ 
+  source: '4',
+  target: '6',
+  value: 1,
+  flow: '2->1',
+  origin: '2',
+  destination: '1'
+},
+{ 
+  source: '5',
+  target: '8',
+  value: 3,
+  flow: '0->0',
+  origin: '0',
+  destination: '0'
+},
+{ 
+  source: '6',
+  target: '9',
+  value: 4,
+  flow: '1->1',
+  origin: '1',
+  destination: '1'
+},
+{ 
+  source: '7',
+  target: '10',
+  value: 3,
+  flow: '2->2',
+  origin: '2',
+  destination: '2'
+},
+{ 
+  source: '8',
+  target: '11',
+  value: 3,
+  flow: '0->0',
+  origin: '0',
+  destination: '0'
+},
+{ 
+  source: '9',
+  target: '12',
+  value: 3,
+  flow: '1->1',
+  origin: '1',
+  destination: '1'
+},
+{ 
+  source: '10',
+  target: '13',
+  value: 2,
+  flow: '2->2',
+  origin: '2',
+  destination: '2'
+},
+{ 
+  source: '9',
+  target: '13',
+  value: 1,
+  flow: '1->2',
+  origin: '1',
+  destination: '2'
+},
+{ 
+  source: '10',
+  target: '14',
+  value: 1,
+  flow: '2->3',
+  origin: '2',
+  destination: '3'
+},
+{ 
+  source: '8',
+  target: '14',
+  value: 2,
+  flow: '0->3',
+  origin: '0',
+  destination: '3'
+},
+{ 
+  source: '11',
+  target: '15',
+  value: 3,
+  flow: '0->0',
+  origin: '0',
+  destination: '0'
+},
+{ 
+  source: '12',
+  target: '16',
+  value: 3,
+  flow: '1->1',
+  origin: '1',
+  destination: '1'
+},
+{ 
+  source: '13',
+  target: '17',
+  value: 2,
+  flow: '2->2',
+  origin: '2',
+  destination: '2'
+},
+{ 
+  source: '14',
+  target: '17',
+  value: 3,
+  flow: '3->2',
+  origin: '3',
+  destination: '2'
+}
+];
+console.log('nodes', nodes);
+console.log('edges', edges);
+
+ReactDOM.render(
+React.createElement(NetworkFrame, {
+  size: [1000, 600],
+  nodes: nodes,
+  edges: edges,
+  networkType: { type: 'sankey' },
+  nodeStyle: function(d) { return { fill: colorForNode(d.community), stroke: 'black' } },
+  nodeLabels: function(d) { return d.label},
+  edgeStyle: function(d) { return { stroke: 'black', fill: colorForLink(d.origin, d.destination) } },
+  margin: 31,
+  hoverAnnotation: true}),
+
+document.getElementById('main'));
+
+</script>
+
+</body>
+</html>
