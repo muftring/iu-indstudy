@@ -11,6 +11,7 @@ https://plot.ly/python/3d-network-graph/
 Sankey Diagrams
 ---------------
 http://bl.ocks.org/d3noob/c9b90689c1438f57d649
+https://medium.com/@Elijah_Meeks/introducing-semiotic-for-data-visualization-88dc3c6b6926
 https://emeeks.github.io/semiotic/#/semiotic/divergingstackedbar
 https://developers.google.com/chart/interactive/docs/basic_load_libs
 https://jsfiddle.net/api/post/library/pure/
@@ -28,6 +29,11 @@ Data Vis
 --------
 https://curran.github.io/dataviz-course-2018/
 https://aviz.fr/cubix
+
+
+Color Selection
+---------------
+https://www.colorhexa.com/d3d3d3
 
 Data Mining
 -----------

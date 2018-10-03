@@ -1,0 +1,293 @@
+<html>
+<head>
+</head>
+<body>
+<div id="main"></div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js'></script>
+<script src='https://unpkg.com/semiotic/dist/semiotic.min.js'></script>
+
+<script >
+    
+var _Semiotic = Semiotic,NetworkFrame = _Semiotic.NetworkFrame;
+
+const colorMap = {
+    'red':         '#ff0000',
+    'green':       '#00ff00',
+    'blue':        '#0000ff',
+    'magenta':     '#8b008b',
+    'lightgray':   '#d3d3d3'
+}
+    
+const nodeColors = {
+  w: colorMap["red"],
+  x: colorMap["blue"],
+  y: colorMap["magenta"],
+  z: colorMap["green"]
+}
+
+const flowColors = {
+    '0->0': colorMap["red"],
+    '0->1': colorMap["lightgray"],
+    '0->2': colorMap["lightgray"],
+    '0->3': colorMap["lightgray"],
+    '1->0': colorMap["lightgray"],
+    '1->1': colorMap["blue"],
+    '1->2': colorMap["lightgray"],
+    '1->3': colorMap["lightgray"],
+    '2->0': colorMap["lightgray"],
+    '2->1': colorMap["lightgray"],
+    '2->2': colorMap['magenta'],
+    '2->3': colorMap["lightgray"],
+    '3->0': colorMap["lightgray"],
+    '3->1': colorMap["lightgray"],
+    '3->2': colorMap["lightgray"],
+    '3->3': colorMap['green']
+}
+
+var nodes = [
+{
+  id: '0',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '1',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '2',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '3',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '4',
+  label: '2',
+  category: 'y'
+},
+{
+  id: '5',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '6',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '7',
+  label: '2',
+  category: 'y'
+},
+{
+  id: '8',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '9',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '10',
+  label: '2',
+  category: 'y'
+},
+{
+  id: '11',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '12',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '13',
+  label: '2',
+  category: 'y'
+},
+{
+  id: '14',
+  label: '3',
+  category: 'z'
+},
+{
+  id: '15',
+  label: '0',
+  category: 'w'
+},
+{
+  id: '16',
+  label: '1',
+  category: 'x'
+},
+{
+  id: '17',
+  label: '2',
+  category: 'y'
+}
+];
+
+var edges = [
+{ 
+  source: '0',
+  target: '1',
+  value: 4,
+  flow: '0->0'
+},
+{ 
+  source: '0',
+  target: '2',
+  value: 1,
+  flow: '0->1'
+},
+{ 
+  source: '3',
+  target: '4',
+  value: 4,
+  flow: '1->2'
+},
+{ 
+  source: '3',
+  target: '2',
+  value: 1,
+  flow: '1->1'
+},
+{ 
+  source: '1',
+  target: '5',
+  value: 3,
+  flow: '0->0'
+},
+{ 
+  source: '1',
+  target: '6',
+  value: 1,
+  flow: '0->1'
+},
+{ 
+  source: '2',
+  target: '6',
+  value: 2,
+  flow: '1->1'
+},
+{ 
+  source: '4',
+  target: '7',
+  value: 3,
+  flow: '2->2'
+},
+{ 
+  source: '4',
+  target: '6',
+  value: 1,
+  flow: '2->1'
+},
+{ 
+  source: '5',
+  target: '8',
+  value: 3,
+  flow: '0->0'
+},
+{ 
+  source: '6',
+  target: '9',
+  value: 4,
+  flow: '1->1'
+},
+{ 
+  source: '7',
+  target: '10',
+  value: 3,
+  flow: '2->2'
+},
+{ 
+  source: '8',
+  target: '11',
+  value: 3,
+  flow: '0->0'
+},
+{ 
+  source: '9',
+  target: '12',
+  value: 3,
+  flow: '1->1'
+},
+{ 
+  source: '10',
+  target: '13',
+  value: 2,
+  flow: '2->2'
+},
+{ 
+  source: '9',
+  target: '13',
+  value: 1,
+  flow: '1->2'
+},
+{ 
+  source: '10',
+  target: '14',
+  value: 1,
+  flow: '2->3'
+},
+{ 
+  source: '8',
+  target: '14',
+  value: 2,
+  flow: '0->3'
+},
+{ 
+  source: '11',
+  target: '15',
+  value: 3,
+  flow: '0->0'
+},
+{ 
+  source: '12',
+  target: '16',
+  value: 3,
+  flow: '1->1'
+},
+{ 
+  source: '13',
+  target: '17',
+  value: 2,
+  flow: '2->2'
+},
+{ 
+  source: '14',
+  target: '17',
+  value: 3,
+  flow: '3->2'
+}
+];
+
+console.log("nodes", nodes);
+console.log("edges", edges);
+
+ReactDOM.render(
+React.createElement(NetworkFrame, {
+  size: [1000, 600],
+  nodes: nodes,
+  edges: edges,
+  networkType: { type: "sankey" },
+  nodeStyle: function(d) { return { fill: nodeColors[d.category], stroke: "black" } },
+  nodeLabels: function(d) { return d.label},
+  edgeStyle: function(d) { return { stroke: "black", fill: flowColors[d.flow] } },
+  margin: 31 }),
+
+document.getElementById('main'));
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+<head>
+</head>
+<body>
+<div id="main"></div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js'></script>
+<script src='https://unpkg.com/semiotic/dist/semiotic.min.js'></script>
+<script > 
+var _Semiotic = Semiotic,NetworkFrame = _Semiotic.NetworkFrame;
+
+var edges = [
+{
+  source: "Wealth Inequality",
+  target: "Federalism",
+  value: 38 },
+
+{
+  source: "Tea Party",
+  target: "Federalism",
+  value: 8 },
+
+{
+  source: "Federalism",
+  target: "Republican Federalism",
+  value: 18 },
+
+{
+  source: "Federalism",
+  target: "Washington Romanticism",
+  value: 28 },
+
+{
+  source: "Undemocratic",
+  target: "Democratic",
+  value: 8 },
+
+{
+  source: "Republican Federalism",
+  target: "Republican",
+  value: 8 },
+
+{
+  source: "Republican",
+  target: "Reconstruction",
+  value: 8 },
+
+{
+  source: "Whig",
+  target: "Democratic",
+  value: 8 },
+
+{
+  source: "Democratic",
+  target: "Slavery Is Cool Party",
+  value: 8 },
+
+{
+  source: "Slavery Is Cool Party",
+  target: "Confederate Party",
+  value: 8 },
+
+{
+  source: "Confederate Party",
+  target: "Confederate Afterparty",
+  value: 8 },
+
+{
+  source: "Confederate Afterparty",
+  target: "Reconstruction",
+  value: 8 },
+
+{
+  source: "Democratic",
+  target: "Democratic Socialism",
+  value: 8 },
+
+{
+  source: "Democratic",
+  target: "Populism",
+  value: 8 },
+
+{
+  source: "Democratic",
+  target: "Unpopularism",
+  value: 8 },
+
+{
+  source: "Democratic Socialism",
+  target: "Undemocratic Socialism",
+  value: 8 },
+
+{
+  source: "Democratic Socialism",
+  target: "Democratic Socialism",
+  value: 8 },
+
+{
+  source: "Republican",
+  target: "Bull Moose",
+  value: 8 },
+
+{
+  source: "Bull Moose",
+  target: "Bachelor Moose",
+  value: 8 },
+
+{
+  source: "Bull Moose",
+  target: "Miss Moose",
+  value: 8 },
+
+{
+  source: "Bull Moose",
+  target: "Mighty Moose",
+  value: 8 },
+
+{
+  source: "Republican",
+  target: "Libertarian",
+  value: 8 },
+
+{
+  source: "Libertarian",
+  target: "Tea Party",
+  value: 8 },
+
+{
+  source: "Libertarian",
+  target: "Elon Party",
+  value: 8 },
+
+{
+  source: "Libertarian",
+  target: "Bitcoin Party",
+  value: 8 }];
+
+
+
+console.log("edges", edges);
+
+ReactDOM.render(
+React.createElement(NetworkFrame, {
+  size: [1200, 500],
+  edges: edges,
+  networkType: { type: "sankey" },
+  nodeStyle: { fill: "red", stroke: "black", strokeWidth: 4 },
+  edgeStyle: { stroke: "black", fill: "darkred" },
+  margin: 31 }),
+
+document.getElementById('main'));
+</script>
+</body>
+</html>
