@@ -10,48 +10,13 @@ Fall, 2018
 </p>
 <br>
 
-<p style="padding-left:40px;"><b>Abstract.</b> Lorem ipsum... <br>
-</p>
-
-> *In the **abstract**, state the problem, your approach and solution, and the main contributions of the paper. Include little if any background and motivation. Be factual but comprehensive. The material in the abstract should not be repeated later word for word in the paper.*
-
-**The problem:** 
-
+<p style="padding-left:40px;"><b>Abstract.</b>
 An in depth analysis of community structure changes over time in temporal networks can be useful for gaining insight into why these changes occur, and what impact the changes might have. For example, observing the ebb and flow of community membership over time and the effects of a diffusion process can potentially provide further understanding of the long-term dynamics of the spreading phenomena on an evolving network.
-
+<br><br>
 Computing modularity for each time-slice of the network permits the ability to compare the community structures of adjacent temporal slices of the dynamic network. The magnitude of each community (in terms of relative size to the network as a whole at that time) in each time-slice is visualized which shows the flow of membership across time. Clustering Similarity is computed from adjacent pairs of modularity and aggregated over the entire time-span of the network data set. This produces a measure of frustration for each vertex which is used to identify stable and unstabble nodes in the network. The stability measure of nodes, with respect to community formation and membership, can indicate which are foundational group members and which are potentially "floaters" (perhaps influencing cross-community diffusion).
-
-The Temporal Network Analysis (TeNA) Python package is being developed to provide analytical functions and visualization methods for these analysis techniques. TeNA is built using well-proven Python packages at its core: NetworkX, Numpy, Pandas, and CluSim.
-
-and visualizing modularity for adjacent temporal slice of the dynamic network
-
-What?
-- identify and show temporal network community structure changes over time
-
-Why?
-- gaining some insight (understanding) into why these changes occur, and what impact the changes might have
-- for eaxmple, to potentially further understand long-term dynamics of spreading phenomena
-
-**Approach:**
-
-We do this by (high-level)
-- computing modularity for each temporal slice of the dynamic network
-- comparing and visualizing modularity for adjacent temporal slice of the dynamic network
-
-More details:
-- show the *flow* using Alluvial Flow Diagrams (Sankey Diagrams)
-- compute Clustering Similarity (CluSim) to find least and most *frustrated* nodes, and we posit that...
-  - the least frustrated nodes are "stable" nodes that are grouped consistently across time, suggesting they are foundational group members
-  - the most frustrated nodes are "floaters" that are not consistently tied to any one group across time
-- visually presenting changes in temporal networks, specifically community structures, can help identify stable nodes which may be important in community formation and preservation across a span of time
-
-What might this tell us about the network, and the community structure? Can we make some broad (however unfounded) statement about the network, the communities, or the processes (e.g., spreading)?
-
-**the main contributions:**
-- the TeNA package
-  - the technology stack? (Python, NetworkX, CluSim, etc.)
-- analysis part: using CluSim to find stable and unstable nodes
-- visualization part: to show the flow of network community structure
+<br><br>
+The Temporal Network Analysis (TeNA) Python package is being developed to provide analytical functions and visualization methods for these analysis techniques. TeNA is built upon proven Python packages: NetworkX, Numpy, Pandas, CluSim, and uses an implementation of the Louvain community detection algorithm.
+</p>
 
 # Introduction
 
