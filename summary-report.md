@@ -4,7 +4,7 @@
 <i>
 Michael Uftring<br>
 Indiana University<br>
-INFO-D699-nnnnn - Independent Study<br>
+DSCI-D699-30784 - Independent Study<br>
 Fall, 2018
 </i>
 </p>
@@ -16,6 +16,14 @@ Fall, 2018
 > *In the **abstract**, state the problem, your approach and solution, and the main contributions of the paper. Include little if any background and motivation. Be factual but comprehensive. The material in the abstract should not be repeated later word for word in the paper.*
 
 **The problem:** 
+
+An in depth analysis of community structure changes over time in temporal networks can be useful for gaining insight into why these changes occur, and what impact the changes might have. For example, observing the ebb and flow of community membership over time and the effects of a diffusion process can potentially provide further understanding of the long-term dynamics of the spreading phenomena on an evolving network.
+
+Computing modularity for each time-slice of the network permits the ability to compare the community structures of adjacent temporal slices of the dynamic network. The magnitude of each community (in terms of relative size to the network as a whole at that time) in each time-slice is visualized which shows the flow of membership across time. Clustering Similarity is computed from adjacent pairs of modularity and aggregated over the entire time-span of the network data set. This produces a measure of frustration for each vertex which is used to identify stable and unstabble nodes in the network. The stability measure of nodes, with respect to community formation and membership, can indicate which are foundational group members and which are potentially "floaters" (perhaps influencing cross-community diffusion).
+
+The Temporal Network Analysis (TeNA) Python package is being developed to provide analytical functions and visualization methods for these analysis techniques. TeNA is built using well-proven Python packages at its core: NetworkX, Numpy, Pandas, and CluSim.
+
+and visualizing modularity for adjacent temporal slice of the dynamic network
 
 What?
 - identify and show temporal network community structure changes over time
