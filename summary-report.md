@@ -11,11 +11,11 @@ Fall, 2018
 <br>
 
 <p style="padding-left:40px;"><b>Abstract.</b>
-An in depth analysis of community structure changes over time in temporal networks can be useful for gaining insight into why these changes occur, and what impact the changes might have. For example, observing the ebb and flow of community membership over time and the effects of a diffusion process can potentially provide further understanding of the long-term dynamics of the spreading phenomena on an evolving network.
+An in depth analysis of community structure changes in temporal networks can be useful for gaining insight into why these changes occur and what impact the changes might have. For example, observing the ebb and flow of community membership over time and the effects of a diffusion process could potentially provide an understanding of the long-term dynamics of the spreading phenomena on an evolving network.
 <br><br>
-Computing modularity for each time-slice of the network permits the ability to compare the community structures of adjacent temporal slices of the dynamic network. The magnitude of each community (in terms of relative size to the network as a whole at that time) in each time-slice is visualized which shows the flow of membership across time. Clustering Similarity is computed from adjacent pairs of modularity and aggregated over the entire time-span of the network data set. This produces a measure of frustration for each vertex which is used to identify stable and unstabble nodes in the network. The stability measure of nodes, with respect to community formation and membership, can indicate which are foundational group members and which are potentially "floaters" (perhaps influencing cross-community diffusion).
+Computing modularity for each time-slice permits the ability to compare the community structures of adjacent temporal periods of a dynamic network. The magnitude of each community (in terms of relative size to the network as a whole at that time) in each time-slice can be visualized; this shows the flow of community membership over time. Similarly, clustering similarity is computed from adjacent pairs of modularity and aggregated over the entire time-span of the network data set. This produces a measure of frustration for each vertex. Frustration can be used to identify stable and unstabble nodes in the network. The node stability measure, with respect to community formation and membership, can indicate which nodes are foundational group members and which are potentially "floaters" (perhaps affecting cross-community diffusion).
 <br><br>
-The Temporal Network Analysis (TeNA) Python package is being developed to provide analytical functions and visualization methods for these analysis techniques. TeNA is built upon proven Python packages: NetworkX, Numpy, Pandas, CluSim, and uses an implementation of the Louvain community detection algorithm.
+The Temporal Network Analysis (TeNA) Python package is being developed to provide analytical functions and visualization methods for these types of analysis techniques. TeNA is built upon proven Python packages: NetworkX, Numpy, Pandas, CluSim, and uses an implementation of the Louvain community detection algorithm.
 </p>
 
 # Introduction
@@ -81,7 +81,7 @@ why is it interesting?
 
 how do we like to visualize this?
 
-## Consistent Cluster Assignment
+## Consistent Cluster Numbering
 
 **Desire:**
 - have consistent modularity assignments across the temporal slices
