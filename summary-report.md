@@ -23,126 +23,109 @@ Most real networks are not static. Over time, network structures change: nodes a
 
 Community structures are generally formed in networks based on the links connecting nodes. Communities reflect a greater-than casual relationship amongst the grouped nodes. The structural changes that occur in networks result in changes to the community structures. As nodes and links are added and removed, the communites in a network will form, expand, contract, and dissolve. Understanding the dynamics of community structure can provide insight into the behavioral patterns and processes on the network. The objective of this project is to provide tools to aid in garnering insights from the evolution of community structure in temporal networks.
 
-
-
-
-When we consider processes on networks as they execute across a span of time, we want to gain some insight into how the processes are affected by the network structure or how the process effects change on the network structure. For example, the nature of diffusion is well understood for static networks. Observing and understanding the dynamic ebb and flow of community structures over time may provide some insight into how spreading is started, increased, decreased, or prevented in temporal networks. Ultimately we would like to use this understanding and gained insight to become able to make predictions on processes, but this is outside the scoop of the current project. 
+When we consider processes on networks as they execute across a span of time, we want to gain some insight into how the processes are affected by the network structure or how the process will effect change on the network structure. For example, the nature of diffusion is well understood for static networks. Observing and understanding the dynamic ebb and flow of community structures over time may provide some insight into how spreading is started, increased, decreased, or prevented in temporal networks. Ultimately we would like to use this understanding and gained insight to become able to make predictions on processes, but this is outside the scoop of the current project. 
 
 The key components of the approach presented here are:
 
 - *Aligned Cluster Numbering*: Most clustering algorithm implementations assign nodes to numbered groups. Each numbered group represents a network community. While the clustering algorithms will not vary the membership in the groups across executions (except as possibly perturned by their stochastic nature), the number assigned to each groups may vary. This was observed to be especially true when executing the clustering on a sequence of temporal slices of networks. In order to consistently analyze a sequence of communities across a span of time, we introduce a mechanism to align the cluster numbering across the entire sequence.
+- *The Ebb and Flow of Community Membership*: A visualization technique which shows the temporal nature of a network from the perspective of communities. The communities are presented as nodes, and the links between nodes show the fluctuation in community membership.
 - *Identifying Stable Nodes*: Using an element-based clustering similarity measure we can compute an overall score for each node in the network across the entire temporal span. The score will indicate stability of the node, relative to its clustering (community assignment) over time. This score is also called level of frustration.
 
-
-
 # Discussion
+## Aligned Cluster Numbering
+We need to be able to trace the lifecycle of community structures in temporal networks. Beyond the initial community formation (from the inaugural time-slice of the temporal network), we need to be able to observe and correlate the changes as time progresses. In order to follow each community, we need a means to consistently identify the communities. We achieve this by aligning the cluster number assignemnts across each time-slice of the temporal network.
 
-**What is the problem?**
-- we would like to gain some insight into how and why networks and their communities change over time
-- how can we observe the flow of community structure over time?
-- what might this tell us?
-- how can we gain some understanding about the impact of the flow?
+Aligning cluster numbering is a process of tracing ancestry. The process entails a comparison of two temporally adjacent cluster assignments, and execution of set of steps:
+1. **compute grouping**: Collects group membership at a specific time. Returns a collection of the groups with their members.
+2. **determine similarity**: Computes the similarity between two groups. Similarity is based on *set operations*: how much of group1 is in group2 is determined by using the set intersection operation.
+3. **find contributors**: For each group, determine which of the previous groups contribute membership. 
+4. **determine origins**: Based on the contributors (found in the prior step), the previous group that provides the largest contribution to the current group is deemed to be the origin. In some cases there is a sole contributor. In some cases one previous group is the sole contributor to more than one current group (the previous group has split). Care is taken such that each previous group is the origin for just one current group, and all group numbering is unique (thus mirroring the results of the actual cluster assignment).
+5. **rename communities**: Based on the origins, if a current group's origin is different than its current assignment, the group is renamed.
 
-Supporting notes:
-- what is a network?
-- networks are dynamic, they change over time
-- what is a community?
-- communities are groups of related entities
-  - in networks, the entities are generally vertices (nodes) that are interconnected by edges (links)
-  - the relationship shared amongst the group of entities is specific to the network
-  - examples:
-    - social network: a group of friends
-    - work / research: collaboration network
-    - publication: citation network
-- communities change over time
+A simple example is presented in the following figures and tables. The network consists of ten nodes observed at three points in time. At time 1, the network has two equal sized communities. At time 2, one node from each of the two original communities (nodes 4 and 9) form a third community. And at time 3, one node from each of the two original communities (nodes 3 and 6) join the third community. The nodes are colored according to their cluster assignment (0: red, 1: blue, 2: green), and the coloring is consistent across each time-slice, and in both the unaligned and aligned results.
 
+Without aligning the cluster numbering, we observe the results presented in Figure 1 and Table 1. At time 2 we observe that the newly formed cluster (nodes 4 and 9) is assigned number 1, and the original cluster assigned 1 (nodes 5, 6, 7, and 8) is now assigned 2. Intuition tells us that cluster 1 should survive at time 2 with the four remaining nodes (5, 6, 7, and 8) and a new cluster assigned number 2 should be formed with the moving nodes (4 and 9). Figure 2 and Table 2 present these results when aligning the cluster numbering, and now the cluster numbering is more intuitive.
 
-**Why is it interesting and important?**
-- knowing this may reveal insights into the structure or processes working on the network, such as spreading phenomena (which could be information or disease)
-- is there a means to make predictions about the network structure and its processes (future work)?
+![](simple-unaligned-t1a.png)
+![](simple-unaligned-t2a.png)
+![](simple-unaligned-t3a.png)   
+**Figure 1**: Simple Network - 3 Time-slices, Nodes Colored with Community Assignment (Unaligned)
 
-**Approach:**
-- aligning community assignments
-- clustering similarity across temporal community assignments
-- identify stable nodes which may be important in community formation and preservation across a span of time
-- how do we measure similarity between clusterings?
-- how do we observe clusterings across a span of time?
-- what visualization techniques can we utilize?
-- what can or should we look for from clustering over time?
-- how do we identify "stable" nodes across clusterings?
+| Node | Time 1 | Time 2 | Time 3 |
+| ---- | ------ | ------ | ------ |
+| 0 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 |
+| 2 | 0 | 0 | 0 |
+| 3 | 0 | 0 | 1 |
+| 4 | 0 | 1 | 1 |
+| 5 | 1 | 2 | 2 |
+| 6 | 1 | 2 | 1 |
+| 7 | 1 | 2 | 2 |
+| 8 | 1 | 2 | 2 |
+| 9 | 1 | 1 | 1 |
+**Table 1**: Simple Network, Unaligned Cluster Numbering
+
+![](simple-aligned-t1a.png)
+![](simple-aligned-t2a.png)
+![](simple-aligned-t3a.png)   
+**Figure 2**: Simple Network - 3 Time-slices, Nodes Colored with Community Assignment (Aligned)
+
+| Node | Time 1 | Time 2 | Time 3 |
+| ---- | ------ | ------ | ------ |
+| 0 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 |
+| 2 | 0 | 0 | 0 |
+| 3 | 0 | 0 | 2 |
+| 4 | 0 | 2 | 2 |
+| 5 | 1 | 1 | 1 |
+| 6 | 1 | 1 | 2 |
+| 7 | 1 | 1 | 1 |
+| 8 | 1 | 1 | 1 |
+| 9 | 1 | 2 | 2 |
+**Table 2**: Simple Network, Aligned Cluster Numbering
 
 ## The Ebb and Flow of Community Membership
+A helpful tool is a visualization of the ebb and flow of community membership in a temporal network. The visualization shows how the communities form, expand, retract, and dissolve. We can clearly see the contributions and origins of each community at each time-slice, as described earlier in *Aligned Cluster Numbering*. To visualize the flow of community membership we use Alluvial Flow Diagrams (also known as Sankey Diagrams). 
 
-what is this? 
-- in the context of looking at Community Structure across time, it shows how the communities form, expand, retract, and dissolve
-- we can use Alluvial Flow Diagrams to show the flow of community membership across time
+Flow is computed by looking at temporally adjacent, aligned cluster numbering (community assignments). We determine all unique "from" and "to" combinations present in the adjoining community assignments. Then we accumulate all traffic in the appropriate from-to bucket; this produces the magnitude of each flow. The flow itself is a directed acyclic graph, where each node represents a community and each edge represents the traffic of membership.
 
-why is it interesting?
+The flow visualization can be presented using three different mechanisms:
+- NetworkX and Matplotlib, with a directed acyclic graph layout computed using the GraphViz `dot` program
+- the `ipysankey` Jupyter Notebook widget
+- as an SVG in an HTML file using **Semiotic**
 
-how do we like to visualize this?
+The ebb and flow of community membership for the simple network presented earlier is shown in Figure 3. Each time-slice is vertically aligned in the visualization. Here we can see how group 0 (red) and group 1 (blue) contribute to group 2 (green) across two time periods. The edges in the graph show the magnitude, the number of community members, travelling from node to node.
 
-## Consistent Cluster Numbering
-
-**Desire:**
-- have consistent modularity assignments across the temporal slices
-- why? without this, using color in the Alluvial Flow Diagram does not present well
-
-**Problem:**
-- the community (number) assigned by the Louvain implementation [reference] is not necessarily consistent across executions
-  - i.e., nodes 1 and 2 may be clustered together in time-slice 1 and 2, but the Louvain implementation may call it cluster 0 the first time and cluster 1 the second time
-  - show simple example (from notebook)
-- this makes it difficult to show consistent cluster membership across time
-
-**Solution:**
-- align the modularity assignments across the temporal slices
-- process temporally adjacent modularities to make the cluster assignments consistent across time
-- find contributors
-- rename modularity assignments
-
-Network flow across time can be represented as a directed acyclic graph (DAG). The DAG can be presented as columns of temporally related nodes. 
-
-**Example:**
-- small network example in *Exploring Network Changes* Jupyter Notebook
-- a few nodes, changing links and community assignments over time
-- show issues
-- show resolution
+![](simple-flow.png)   
+**Figure 3**: Simple Network, Flow of Community Membership
 
 ## Clustering Similarity
+Clustering similarity measures are used to indicate how similar two clustering results are. There are several different clustering similarity measures. Here we use the element-based clustering similarity measure provided by the *CluSim* Python package. This measure is useful for at least two reasons. First, it is robust to <something>. Second, it can give us a similarity measure for each node. With the node-granular measure computed across each temporal span, we can aggregate the values to determine overall node frustration.
 
-what is this? 
-- a mechanism to comapre the similarity of two clustering results
+Frustration is a measure of how similarly a node has been clustered between two clusterings. The aggregated frustration over the time-span of a temporal network can be an indicator of how stable a node is over time. A stable node would have a high aggregated node-granular clustering similarity value, meaning is has been clustered consistently over time. Lower values indicate that a node has not been clustered consistently over time.
 
-why is it interesting or important?
-- to find stable nodes: what are stable nodes?
-- to find unstable nodes: what are unstable nodes?
-- knowing these may help in understanding how communities in networks form, expand, retract, and dissolve
-- and it may provide some insight into spreading phenomena within a community, and between communities
+Knowing node-granular clustering similarity value, or frustration, can yield some insight into the network community structures. Stable nodes may be foundational nodes for communities: these may be the nodes "with attraction" and around which the communities form. Unstable nodes, also called "floaters," tend to move from community to community. This behavior may explain the effectiveness or ineffectiveness of observed network processes like diffusion across communities.
 
 # Primary School Data
 - provide reference
-- explain data set
+- briefly explain the data set
 - do we know anything from the original paper?
 - explain analysis
-- show Alluvial Flow Diagrams
+- show Alluvial Flow Diagram
 - present stable and unstable nodes (frustration)
 - discuss computation of this at different time granularities
 - what, if anything, do we learn from this?
 
-# Related Work
-(maybe skip this section, and instead cite relevant or supporting work inline and assemble list of references at the end)
-
-papers:
-1. Alex and YY's paper
-2. the Primary School paper (though it may not be directly relevant)
-3. Fundamental structures of dynamic social networks (the PNAS paper)
-4. ???
-
 # Conclusion
+Aligned cluster numbering is essential for visualizing the ebb and flow of community membership.
 
-What did we find? What can we conclude?
+With element-based cluster similarity measures we can gain some understanding into how and why communities in networks form, expand, retract, and dissolve, and potentially gain some insight into processes executing on the network.
 
 # Future Work
+- this is an evolving tool set, and Python package
+- ideally we will continue to improve and expand this beyond the scope of this project
 
+To Do List:
 - data set framework (abstraction) 
   - to load diverse temporal network data sets into common data format
   - for use with TeNA
@@ -163,6 +146,8 @@ What did we find? What can we conclude?
 
 # References
 
------
-
-https://cs.stanford.edu/people/widom/paper-writing.html
+1. Alex and YY's paper
+2. the Primary School paper (though it may not be directly relevant)
+3. Fundamental structures of dynamic social networks (the PNAS paper)
+4. ???
+5. https://cs.stanford.edu/people/widom/paper-writing.html
