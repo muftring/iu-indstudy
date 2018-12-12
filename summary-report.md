@@ -1,4 +1,4 @@
-# <p style="text-align: center;">Community Evolution in Temporal Networks</p>
+# <p style="text-align: center;">Exploring Community Evolution in Temporal Networks</p>
 <br>
 <p style="text-align: center;">
 <i>
@@ -120,36 +120,50 @@ The data set was split into 3600 second (1 hour) segments. From each of these te
 ![](primary-school-flow-semiotic.png)   
 **Figure 5**: Primary School Data, Ebb and Flow of Community Membership (Semiotic)
 
+The element-based clustering similarity measure was used to find the stable and unstable nodes, with respect to the network community structure. The measure was computed for several different time granularities: 60, 120, 180, 240, 300, 600, 900, 1200, 1500, 1800, 2700, and 3600 seconds. The maximum and minimum values were extracted to find the least and most frustrated nodes, respectively. These correspond to the most stable and least stable nodes. The results are shown in Table 3 below.
+
+From these results we make the following observations:
+- at shorter granularities (60 - 600 seconds), where we are aggregating over many clustering similarity results in each iteration, the maximum element similarity measure is in the 0.74 - 0.84 range.
+- at longer granularities (900 seconds and greater), where the number of clustering similarity results is fewer, we see notably higher maximum element similarity measures, mostly above 0.90.
+- node 1715 was the most stable between 3 minute and 15 minute granularity; this might suggest that node is "popular" amongst a common set of students, but not for longer spans of time.
+- nodes 1618 and 1818 are the most stable in the longer periods, suggesting that they may draw a common crowd when viewed at coarse granularities (extending over the span of an entire school day)
+
+| Period | Max(f) | Node | Min(f) | Node |
+| ------ | ------ | ---- | ------ | ---- |
+| 60 | 0.808519 | 1803 | 0.511990 | 1735 |
+| 120 | 0.742048 | 1854 | 0.417974 | 1799 |
+| 180 | 0.741221 | 1715 | 0.426057 | 1799 |
+| 240 | 0.795447 | 1715 | 0.343352 | 1799 |
+| 300 | 0.848891 | 1715 | 0.405946 | 1799 |
+| 600 | 0.804778 | 1715 | 0.433614 | 1480 |
+| 900 | 0.874152 | 1715 | 0.356472 | 1630 |
+| 1200 | 0.846276 | 1525 | 0.425809 | 1609 |
+| 1500 | 0.941126 | 1618 | 0.440813 | 1511 |
+| 1800 | 0.950189 | 1618 | 0.354043 | 1799 |
+| 2700 | 0.926808 | 1818 | 0.415253 | 1909 |
+| 3600 | 0.914815 | 1818 | 0.480021 | 1854 |
+
+**Table 3:** Primary School Data, Most Stable and Most Unstable Nodes at Varying Temporal Granularity
+
 # Conclusion
 Aligned cluster numbering is essential for visualizing the ebb and flow of community membership.
 
 With element-based cluster similarity measures we can gain some understanding into how and why communities in networks form, expand, retract, and dissolve, and potentially gain some insight into processes executing on the network.
 
 # Future Work
-- this is an evolving tool set, and Python package
-- ideally we will continue to improve and expand this beyond the scope of this project
+This is an evolving body of work, for both the tool set (Python package) and learning about and analyzing temporal network data. Ideally learning activities and research will continue beyond the term of this class project, and the tool set will improve and expand its capabilities.
 
-To Do List:
-- data set framework (abstraction) 
-  - to load diverse temporal network data sets into common data format
-  - for use with TeNA
-- API to permit temporal window size (where applicable)
-- annotate Alluvial Flow diagrams with least and most frustrated nodes 
-  - to show community important nodes, and free floaters
-- real-time capabbilities:
-  - stream network data in
-  - live Alluvial Flow Diagram construction and update
-- Alluvial Flow Diagram navigation:
-  - scroll "wide" diagram
-  - zoom in / zoom out 
-- publish TeNA package
-- docs for TeNA package
-- spreading phenomena (dynamics)
-- performance: make TeNA work well with small and large data sets
-- further analysis projects (UIUC research)
+Areas for improvement and expansion:
+- Data Set Handling: build an abstract mechanism which permits the ability to load and process diverse data sets with the TeNA package
+- Data Processing: enhance API to permit specifying temporal window size (where applicable)
+- Visualization: further annotate Alluvial Flow diagrams with least and most frustrated nodes in order to show community important nodes, and free floaters
+- User Experience: enhance Alluvial Flow diagram presentation to permit scrolling "wide" diagrams, and zoom in / zoom out to alter temporal view
+- Release: publish TeNA package on GitHub and PyPI, write technical and user docs
+- Analysis: explore different temporal network data sets (UIUC research), explore network processes such as spreading phenomena
+- Real-time Capabilities: stream network data into processing layer, build live updating Alluvial Flow Diagram
+- Performance: make TeNA work well with small and large data sets
 
 # References
-
 1. A.J. Gates, I.B. Wood, W.P. Hetrick, and YY Ahn; *On comparing clusterings: an element-centric framework unifies overlaps and hierarchy*; 2018, arxiv: 1706.06136.
 2. CluSim: An extended package for clustering similarity; https://github.com/Hoosier-Clusters/clusim
 3. M. Rosvall, C.T. Bergstrom; *Mapping Change in Large Networks*; PLOS One, January 27, 2010; https://doi.org/10.1371/journal.pone.0008694
