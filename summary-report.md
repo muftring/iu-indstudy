@@ -100,21 +100,25 @@ The ebb and flow of community membership for the simple network presented earlie
 **Figure 3**: Simple Network, Flow of Community Membership
 
 ## Clustering Similarity
-Clustering similarity measures are used to indicate how similar two clustering results are. There are several different clustering similarity measures. Here we use the element-based clustering similarity measure provided by the *CluSim* Python package. This measure is useful for at least two reasons. First, it is robust to <something>. Second, it can give us a similarity measure for each node. With the node-granular measure computed across each temporal span, we can aggregate the values to determine overall node frustration.
+Clustering similarity measures are used to indicate how similar two clustering results are. There are several different clustering similarity measures. Here we use the element-based clustering similarity measure provided by the *CluSim* Python package. This measure is useful for at least two reasons. First, it is robust to overlapping and hierarchical clusterings, and does not suffer critical biases. Second, it can give us a similarity measure for each node. With the node-granular measure computed across each temporal span, we can aggregate the values to determine overall node frustration.
 
 Frustration is a measure of how similarly a node has been clustered between two clusterings. The aggregated frustration over the time-span of a temporal network can be an indicator of how stable a node is over time. A stable node would have a high aggregated node-granular clustering similarity value, meaning is has been clustered consistently over time. Lower values indicate that a node has not been clustered consistently over time.
 
 Knowing node-granular clustering similarity value, or frustration, can yield some insight into the network community structures. Stable nodes may be foundational nodes for communities: these may be the nodes "with attraction" and around which the communities form. Unstable nodes, also called "floaters," tend to move from community to community. This behavior may explain the effectiveness or ineffectiveness of observed network processes like diffusion across communities.
 
-# Primary School Data
-- provide reference
-- briefly explain the data set
-- do we know anything from the original paper?
-- explain analysis
-- show Alluvial Flow Diagram
-- present stable and unstable nodes (frustration)
-- discuss computation of this at different time granularities
-- what, if anything, do we learn from this?
+# Primary School Temporal Network Data
+From DATASET: Primary school temporal network data [5]: 
+> This data set contains the temporal network of contacts between the children and teachers used in the study published in BMC Infectious Diseases 2014, 14:695. The file contains a tab-separated list representing the active contacts during 20-second intervals of the data collection. Each line has the form “t i j Ci Cj”, where i and j are the anonymous IDs of the persons in contact, Ci and Cj are their classes, and the interval during which this contact was active is [ t – 20s, t ]. If multiple contacts are active in a given interval, you will see multiple lines starting with the same value of t. Time is measured in seconds.
+
+The *Primary School Temporal Network Data* provides 125,773 distinct observations (interactions, active close-contact). The observations are made across two separate time spans (days). The `t` value ranges are: day 1: 31220 to 62300, elapsed span is 31080 seconds (518 minutes =  8.63 hours), day 2: 117240 to 148120, elapsed span is 30880 seconds (514.67 minutes = 8.58 hours). The two observation periods are separated by 54940 seconds (915.67 minutes = 15.26 hours). There are 242 distinct actors (nodes), and there are 11 known categorical groups (the classes: 1A, 1B, 2A, 2B, 3A, 3B, 4A, 4B, 5A, 5B, Teachers).
+
+The data set was split into 3600 second (1 hour) segments. From each of these temporal time-slices we discovered community structures, computed clustering similarity, and produced a visualization of the ebb and flow of the community membership. Figures 4 and 5 show the visualization of the flow. While both are presented as static images here, the visualization produced by Semiotic when viewed from its HTML file is interactive with hover annotations.
+
+![](primary-school-flow.png)   
+**Figure 4**: Primary School Data, Ebb and Flow of Community Membership (NetworkX)
+
+![](primary-school-flow-semiotic.png)   
+**Figure 5**: Primary School Data, Ebb and Flow of Community Membership (Semiotic)
 
 # Conclusion
 Aligned cluster numbering is essential for visualizing the ebb and flow of community membership.
@@ -146,8 +150,10 @@ To Do List:
 
 # References
 
-1. Alex and YY's paper
-2. the Primary School paper (though it may not be directly relevant)
-3. Fundamental structures of dynamic social networks (the PNAS paper)
-4. ???
-5. https://cs.stanford.edu/people/widom/paper-writing.html
+1. A.J. Gates, I.B. Wood, W.P. Hetrick, and YY Ahn; *On comparing clusterings: an element-centric framework unifies overlaps and hierarchy*; 2018, arxiv: 1706.06136.
+2. CluSim: An extended package for clustering similarity; https://github.com/Hoosier-Clusters/clusim
+3. M. Rosvall, C.T. Bergstrom; *Mapping Change in Large Networks*; PLOS One, January 27, 2010; https://doi.org/10.1371/journal.pone.0008694
+4. V. Gemmetto, A. Barrat, C. Cattuto; *Mitigation of infectious disease at school: targeted class closure vs school closure*; BMC Infectious Diseases 14, 695 (2014); http://www.biomedcentral.com/1471-2334/14/695
+5. DATASET: Primary school temporal network data, http://www.sociopatterns.org/datasets/primary-school-temporal-network-data/
+6. V. Sekara, A. Stopczynski, and S. Lehmann; *Fundamental structures of dynamic social networks*; PNAS September 6, 2016 113 (36) 9977-9982; https://doi.org/10.1073/pnas.1602803113
+7. E. Meeks, Semiotic Visualization, https://emeeks.github.io/semiotic/#/
