@@ -19,14 +19,23 @@ The Temporal Network Analysis (TeNA) Python package is being developed to provid
 </p>
 
 # Introduction
+Most real networks are not static. Over time, network structures change: nodes and links are added and removed. Given this kind of flux in the compositional elements, other network structures are subject to change as as a result.
 
-5 paragraphs (more or less):
+Community structures are generally formed in networks based on the links connecting nodes. Communities reflect a greater-than casual relationship amongst the grouped nodes. The structural changes that occur in networks result in changes to the community structures. As nodes and links are added and removed, the communites in a network will form, expand, contract, and dissolve. Understanding the dynamics of community structure can provide insight into the behavioral patterns and processes on the network. The objective of this project is to provide tools to aid in garnering insights from the evolution of community structure in temporal networks.
 
-> 1. What is the problem?
-> 2. Why is it interesting and important?
-> 3. Why is it hard? (E.g., why do naive approaches fail?)
-> 4. Why hasn't it been solved before? (Or, what's wrong with previous proposed solutions? How does mine differ?)
-> 5. What are the key components of my approach and results? Also include any specific limitations.
+
+
+
+When we consider processes on networks as they execute across a span of time, we want to gain some insight into how the processes are affected by the network structure or how the process effects change on the network structure. For example, the nature of diffusion is well understood for static networks. Observing and understanding the dynamic ebb and flow of community structures over time may provide some insight into how spreading is started, increased, decreased, or prevented in temporal networks. Ultimately we would like to use this understanding and gained insight to become able to make predictions on processes, but this is outside the scoop of the current project. 
+
+The key components of the approach presented here are:
+
+- *Aligned Cluster Numbering*: Most clustering algorithm implementations assign nodes to numbered groups. Each numbered group represents a network community. While the clustering algorithms will not vary the membership in the groups across executions (except as possibly perturned by their stochastic nature), the number assigned to each groups may vary. This was observed to be especially true when executing the clustering on a sequence of temporal slices of networks. In order to consistently analyze a sequence of communities across a span of time, we introduce a mechanism to align the cluster numbering across the entire sequence.
+- *Identifying Stable Nodes*: Using an element-based clustering similarity measure we can compute an overall score for each node in the network across the entire temporal span. The score will indicate stability of the node, relative to its clustering (community assignment) over time. This score is also called level of frustration.
+
+
+
+# Discussion
 
 **What is the problem?**
 - we would like to gain some insight into how and why networks and their communities change over time
@@ -47,20 +56,12 @@ Supporting notes:
     - publication: citation network
 - communities change over time
 
+
 **Why is it interesting and important?**
 - knowing this may reveal insights into the structure or processes working on the network, such as spreading phenomena (which could be information or disease)
 - is there a means to make predictions about the network structure and its processes (future work)?
 
-**Why is it hard?**   
-(maybe skip this)
-
-**Why hasn't it been solved before?**   
-Or, what's wrong with previous proposed solutions? How does mine differ?   
-(maybe skip this)
-
-**What are the key components of my approach and results?**   
-Also include any specific limitations.
-
+**Approach:**
 - aligning community assignments
 - clustering similarity across temporal community assignments
 - identify stable nodes which may be important in community formation and preservation across a span of time
@@ -70,8 +71,7 @@ Also include any specific limitations.
 - what can or should we look for from clustering over time?
 - how do we identify "stable" nodes across clusterings?
 
-# Discussion
-## Network Flow
+## The Ebb and Flow of Community Membership
 
 what is this? 
 - in the context of looking at Community Structure across time, it shows how the communities form, expand, retract, and dissolve
